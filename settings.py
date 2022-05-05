@@ -5,7 +5,7 @@ class Settings():
     heigth = 720
     fps = 60
 
-    title = "Tilemap Editor"
+    title = "2D-RPG-Game"
     volume = 0.1
 
     file_path = os.path.dirname(os.path.abspath(__file__))
@@ -16,3 +16,4 @@ class Settings():
     tilesize = 16 # 16x16 tiles
     
 
+    
