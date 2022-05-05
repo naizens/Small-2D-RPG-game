@@ -15,16 +15,16 @@ class Inputs():
             if keys[pygame.K_ESCAPE]:
                     self.game.running = False
 
-            if keys[pygame.K_UP]:
+            if keys[pygame.K_w]:
                 self.game.level.player.direction.y = -1
-            elif keys[pygame.K_DOWN]:
+            elif keys[pygame.K_s]:
                 self.game.level.player.direction.y = 1
             else:
                 self.game.level.player.direction.y = 0
 
-            if keys[pygame.K_RIGHT]:
+            if keys[pygame.K_d]:
                 self.game.level.player.direction.x = 1
-            elif keys[pygame.K_LEFT]:
+            elif keys[pygame.K_a]:
                 self.game.level.player.direction.x = -1
             else:
                 self.game.level.player.direction.x = 0
