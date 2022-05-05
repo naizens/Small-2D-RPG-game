@@ -11,7 +11,7 @@ class Settings():
     file_path = os.path.dirname(os.path.abspath(__file__))
     asset_path = os.path.join(file_path, "assets")
     image_path = os.path.join(asset_path, "images")
-    test_path = os.path.join(file_path, "test")
+    test_path = os.path.join(asset_path, "test")
     sound_path = os.path.join(asset_path, "sounds")
     
 

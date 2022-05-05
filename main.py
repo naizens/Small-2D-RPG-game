@@ -1,7 +1,8 @@
 import pygame, sys, os
 from settings import Settings
 from level import Level
-#from debug import debug
+from keyboard_events import Inputs
+from debug import debug
 
 
 class Game(object):
@@ -17,20 +18,20 @@ class Game(object):
         self.clock = pygame.time.Clock()
 
         self.level = Level()
+        self.input_manager = Inputs(self)
 
     def run(self):
         self.running = True
-
-        self.screen.fill("black")
-        self.clock.tick(Settings.fps)
-
-        self.update()
-        self.draw()
-        
         while self.running == True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
+
+            self.clock.tick(Settings.fps)
+            self.screen.fill("black")
+            self.update()
+            self.draw()
+            
+
+            debug(self.level.player.direction)
+
 
             pygame.display.update()
             
@@ -41,6 +42,7 @@ class Game(object):
 
     def update(self):
         self.level.update()
+        self.input_manager.keyboard_input()
 
     def draw(self):
         self.level.draw()
