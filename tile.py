@@ -5,6 +5,8 @@ class Tile(pygame.sprite.Sprite):
     def __init__(self, pos, groups):
         super().__init__(groups)
         
-        self.image = pygame.image.load(os.path.join(Settings.test_path,"rock.png")).convert_alpha()
+        self.image = pygame.image.load(os.path.join(Settings.test_path,"fence.png")).convert_alpha()
+        self.x, self.y = self.image.get_size()
+        self.image = pygame.transform.scale(self.image, (self.x*Settings.scaling, self.y*Settings.scaling))
         self.rect = self.image.get_rect(topleft = pos)
-        self.hitbox = self.rect.inflate(0, -10)
+        self.hitbox = self.rect.inflate(0, -20)

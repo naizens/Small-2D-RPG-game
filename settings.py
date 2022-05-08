@@ -15,7 +15,8 @@ class Settings():
     sound_path = os.path.join(asset_path, "sounds")
     
 
-    tilesize = 64 # put on 64 for testing purposes change to 16 for production
+    tilesize = 16 # put on 64 for testing purposes change to 16 for production
+    scaling = 4 # parameter to scale the images
     
 
     world_map = [
