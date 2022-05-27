@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.x, self.y = self.image.get_size()
         self.image = pygame.transform.scale(self.image, (self.x*Settings.scaling, self.y*Settings.scaling))
         self.rect = self.image.get_rect(topleft = pos)
-        self.hitbox = self.rect.inflate(0, -26)
+        self.hitbox = self.rect.inflate(-50, -60)
 
         
         self.direction = pygame.math.Vector2()

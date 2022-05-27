@@ -21,7 +21,8 @@ class Level():
         layouts = {
             "boundary": import_csv_layout(os.path.join(Settings.map_path,"map_FloorBlocks.csv")),
             "objects": import_csv_layout(os.path.join(Settings.map_path,"map_Objects.csv")),
-            "animals": import_csv_layout(os.path.join(Settings.map_path,"map_Animals.csv")),         
+            "animals": import_csv_layout(os.path.join(Settings.map_path,"map_Animals.csv")),
+            "entitys": import_csv_layout(os.path.join(Settings.map_path,"map_Entitys.csv")),          
             }
         graphics = {
             "animals": import_folder(Settings.animal_path),
@@ -45,9 +46,14 @@ class Level():
                         if style == "animals":
                             random_animal = graphics["animals"][random.choice(list(graphics["animals"]))]
                             Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "animal", random_animal)
+                        
+                        if style == "entitys":
+                            if col == "0":
+                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites)
+                            
 
 
-        self.player = Player((2700,1000),[self.visible_sprites], self.obstacle_sprites)
+        #self.player = Player((2700,1000),[self.visible_sprites], self.obstacle_sprites)
 
 
 
