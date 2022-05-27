@@ -28,7 +28,6 @@ class Game(object):
             self.screen.fill("black")
             self.update()
             self.draw()
-            
 
             debug(self.level.player.direction)
 
@@ -46,7 +45,6 @@ class Game(object):
 
     def draw(self):
         self.level.draw()
-
 
 if __name__ == "__main__":
     game = Game()

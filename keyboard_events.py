@@ -15,6 +15,8 @@ class Inputs():
             if keys[pygame.K_ESCAPE]:
                     self.game.running = False
 
+            
+            ## Movement Keys
             if keys[pygame.K_w]:
                 self.game.level.player.direction.y = -1
             elif keys[pygame.K_s]:
@@ -28,6 +30,17 @@ class Inputs():
                 self.game.level.player.direction.x = -1
             else:
                 self.game.level.player.direction.x = 0
+                
+            ## Attack Keys
+            if keys[pygame.K_SPACE]:
+                # self.game.level.player
+                pass
+                
+            ## Magic Key
+            
+            if keys[pygame.K_LCTRL]:
+                # self.game.level.player
+                pass
 
 """     for event in pygame.event.get():
             if event.type == pygame.QUIT:

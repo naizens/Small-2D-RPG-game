@@ -21,12 +21,11 @@ class Level():
         layouts = {
             "boundary": import_csv_layout(os.path.join(Settings.map_path,"map_FloorBlocks.csv")),
             "objects": import_csv_layout(os.path.join(Settings.map_path,"map_Objects.csv")),
-            "animals": import_csv_layout(os.path.join(Settings.map_path,"map_Animals.csv")),
-            
+            "animals": import_csv_layout(os.path.join(Settings.map_path,"map_Animals.csv")),         
             }
         graphics = {
             "animals": import_folder(Settings.animal_path),
-            "objects": import_folder(Settings.image_path)
+            "objects": import_folder(Settings.image_path),
         }
         
         
@@ -38,15 +37,16 @@ class Level():
                         y = row_index * Settings.tilesize * Settings.scaling
                         if style == "boundary":
                             Tile((x,y),[self.obstacle_sprites], "invisible")
+                            
                         if style == "objects":
-                            pass
+                            surf = graphics["objects"][col]
+                            Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "object", surf)
+                            
                         if style == "animals":
-                            random_animal = random.choice(graphics["animals"])
+                            random_animal = graphics["animals"][random.choice(list(graphics["animals"]))]
                             Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "animal", random_animal)
-        #         if col == "x":
-        #             Tile((x,y),[self.visible_sprites, self.obstacle_sprites])
-        #         if col == "p":
-        #             self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites)
+
+
         self.player = Player((2700,1000),[self.visible_sprites], self.obstacle_sprites)
 
 
