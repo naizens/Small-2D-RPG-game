@@ -27,7 +27,7 @@ class Game(object):
         while self.running == True:
 
             self.clock.tick(Settings.fps)
-            self.screen.fill("black")
+            self.screen.fill("#4fa4b8")
             self.update()
             self.draw()
 
