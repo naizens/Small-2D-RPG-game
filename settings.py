@@ -1,8 +1,8 @@
 import os
 
 class Settings():
-    width = 1280
-    heigth = 720
+    width = 1920
+    heigth = 1080
     fps = 60
 
     title = "2D-RPG-Game"
