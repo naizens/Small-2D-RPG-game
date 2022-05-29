@@ -12,10 +12,12 @@ class Game(object):
 
 
         pygame.init()
+        pygame.font.init()
         pygame.display.set_caption(Settings.title)
 
         self.screen = pygame.display.set_mode((Settings.width, Settings.heigth))
         self.clock = pygame.time.Clock()
+        self.font = pygame.font.SysFont("Arial Bold", 40)
 
         self.level = Level()
         self.input_manager = Inputs(self)
@@ -30,21 +32,29 @@ class Game(object):
             self.draw()
 
             debug(self.level.player.direction)
-
+            
+            
 
             pygame.display.update()
             
 
         pygame.quit()
         sys.exit()
-   
+    
+    def update_fps(self):
+        self.fps = round(self.clock.get_fps())
+        self.fps_text = self.font.render(str(self.fps), True, "white")
+        return self.fps_text
+        
 
     def update(self):
         self.level.update()
         self.input_manager.keyboard_input()
+        self.update_fps()
 
     def draw(self):
         self.level.draw()
+        self.screen.blit(self.update_fps(), (10, 40))
 
 if __name__ == "__main__":
     game = Game()
