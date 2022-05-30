@@ -20,8 +20,8 @@ class Level():
     def create_map(self):
         layouts = {
             "boundary": import_csv_layout(os.path.join(Settings.map_path,"map_FloorBlocks.csv")),
-            "objects": import_csv_layout(os.path.join(Settings.map_path,"map_Objects.csv")),
-            "animals": import_csv_layout(os.path.join(Settings.map_path,"map_Animals.csv")),
+            "objects": import_csv_layout(os.path.join(Settings.map_path,"map_objects.csv")),
+            "animals": import_csv_layout(os.path.join(Settings.map_path,"map_animals.csv")),
             "entitys": import_csv_layout(os.path.join(Settings.map_path,"map_Entitys.csv")),          
             }
         graphics = {

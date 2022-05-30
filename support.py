@@ -19,7 +19,7 @@ def import_folder(path):
     
     for _,__,img_files in os.walk(path):
         for image in img_files:
-            full_path = path + "\\" + image
+            full_path = os.path.join(path, image)
             image_surf = pygame.image.load(full_path).convert_alpha()
             image_test = image.replace(".png","")
             surface_list[image_test] = image_surf
