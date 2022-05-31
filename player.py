@@ -16,6 +16,8 @@ class Player(pygame.sprite.Sprite):
 
         self.import_player_assets()
         self.status = "down"
+        self.frame_index = 0
+        self.animation_speed = 0.15
         
         self.direction = pygame.math.Vector2()
         self.speed = 5
@@ -33,10 +35,10 @@ class Player(pygame.sprite.Sprite):
         
         for animation in self.animations.keys():
             full_path = os.path.join(character_path, animation)
-            self.animations[animation] = import_folder(full_path)
+            self.animations[animation] = list(import_folder(full_path).values())
+        print(self.animations)
 
     def get_status(self):
-        #idle
         if self.direction.x == 0 and self.direction.y == 0:
             if not "idle" in self.status and not "attack" in self.status:
                 self.status = self.status + "_idle"
@@ -87,9 +89,21 @@ class Player(pygame.sprite.Sprite):
             if current_time - self.game.input_manager.attack_time >= self.attack_cooldown:
                 self.attacking = False
     
+    def animate(self):
+        animation = self.animations[self.status]
+        
+        #loop over the frame index
+        self.frame_index += self.animation_speed
+        if self.frame_index >= len(animation):
+            self.frame_index = 0
+            
+        self.image = animation[int(self.frame_index)]
+        self.rect = self.image.get_rect(center = self.hitbox.center)
+    
     def update(self):
         self.cooldowns()
         self.get_status()
+        self.animate()
         self.move(self.speed)
         
 
