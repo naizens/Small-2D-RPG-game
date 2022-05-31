@@ -5,16 +5,18 @@ from player import Player
 import os
 from support import import_csv_layout, import_folder
 import random
+from debug import debug
 
 class Level():
-    def __init__(self):
+    def __init__(self, game):
 
         self.display_surface = pygame.display.get_surface()
 
         self.visible_sprites = YSortCameraGroup()  # Group of sprites that are visible
         self.obstacle_sprites = pygame.sprite.Group() # Group of the sprites that the Player can collide with
 
-
+        self.game = game
+        
         self.create_map()
 
     def create_map(self):
@@ -26,7 +28,8 @@ class Level():
             }
         graphics = {
             "animals": import_folder(Settings.animal_path),
-            "objects": import_folder(Settings.image_path),
+            "objects": import_folder(Settings.object_path),
+            "entitys": import_folder(Settings.monster_path),
         }
         
         
@@ -49,7 +52,10 @@ class Level():
                         
                         if style == "entitys":
                             if col == "0":
-                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites)
+                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, self.game)
+                            else:
+                                random_entity = graphics["entitys"][random.choice(list(graphics["entitys"]))]
+                                Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "entity", random_entity)
                             
 
 
@@ -62,7 +68,6 @@ class Level():
         
 
     def draw(self):
-
         self.visible_sprites.custom_draw(self.player)
 
 

@@ -19,7 +19,7 @@ class Game(object):
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("Arial Bold", 40)
 
-        self.level = Level()
+        self.level = Level(self)
         self.input_manager = Inputs(self)
 
     def run(self):
@@ -31,7 +31,7 @@ class Game(object):
             self.update()
             self.draw()
 
-            debug(self.level.player.direction)
+            debug(self.level.player.status)
             
             
 

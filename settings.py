@@ -12,8 +12,10 @@ class Settings():
     asset_path = os.path.join(file_path, "assets")
     
     image_path = os.path.join(asset_path, "images")
+    object_path = os.path.join(image_path, "objects")
     animal_path = os.path.join(image_path, "animals")
     monster_path = os.path.join(image_path, "monsters")
+    character_path = os.path.join(image_path, "player")
     
     map_path = os.path.join(asset_path, "map")
     sound_path = os.path.join(asset_path, "sounds")
