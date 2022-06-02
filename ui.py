@@ -23,7 +23,7 @@ class Ui:
         
         pygame.draw.rect(self.display_surface, color, current_rect)
     
-    def display(self, player):
+    def draw(self, player):
         self.show_bar(player.health, player.stats["health"], self.healt_bar_rect, Settings.health_color)
         self.show_bar(player.energy, player.stats["energy"], self.energy_bar_rect, Settings.energy_color)
         

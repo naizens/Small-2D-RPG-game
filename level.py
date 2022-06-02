@@ -82,7 +82,7 @@ class Level():
         
     def draw(self):
         self.visible_sprites.custom_draw(self.player)
-        self.ui.display(self.player)
+        self.ui.draw(self.player)
 
 
 class YSortCameraGroup(pygame.sprite.Group):
