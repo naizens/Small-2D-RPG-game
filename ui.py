@@ -19,6 +19,13 @@ class Ui:
             path = weapon["graphic"]
             weapon = pygame.image.load(path).convert_alpha()
             self.weapon_graphics.append(weapon)
+            
+        #convert magic dict to list    
+        self.magic_graphics = []
+        for magic in Settings.magic_data.values():
+            path = magic["graphic"]
+            magic = pygame.image.load(path).convert_alpha()
+            self.magic_graphics.append(magic)
     
     def show_bar(self, current, max_ammount, bg_rect, color):
         pygame.draw.rect(self.display_surface, Settings.ui_bg_color, bg_rect, border_radius = Settings.ui_border_radius)
@@ -51,11 +58,18 @@ class Ui:
         return bg_rect
     
     def weapon_overlay(self, weapon_index, has_switched):
-        bg_rect = self.item_box(Settings.width // 2 - Settings.item_box_size // 2 , Settings.heigth - (Settings.item_box_size + 10), has_switched)
+        bg_rect = self.item_box(Settings.width // 2 - Settings.item_box_size , Settings.heigth - (Settings.item_box_size + 20), has_switched)
         weapon_surface = self.weapon_graphics[weapon_index]
         weapon_rect = weapon_surface.get_rect(center = bg_rect.center)
         
         self.display_surface.blit(weapon_surface, weapon_rect)
+        
+    def magic_overlay(self, magic_index, has_switched):
+        bg_rect = self.item_box(Settings.width // 2 - 15 , Settings.heigth - (Settings.item_box_size + 15), has_switched)
+        magic_surface = self.magic_graphics[magic_index]
+        magic_rect = magic_surface.get_rect(center = bg_rect.center)
+        
+        self.display_surface.blit(magic_surface, magic_rect)
         
     def draw(self, player):
         self.show_bar(player.health, player.stats["health"], self.healt_bar_rect, Settings.health_color)
@@ -64,4 +78,6 @@ class Ui:
         self.show_exp(player.exp)
         
         self.weapon_overlay(player.weapon_index, not player.can_switch_weapon)
+        self.magic_overlay(player.magic_index, not player.can_switch_magic)
+        
         

@@ -57,25 +57,25 @@ class Inputs():
                     self.game.level.player.can_switch_weapon = False
                     self.game.level.player.weapon_switch_time = pygame.time.get_ticks()
                     
-                    if self.game.level.player.weapon_index > 0:
-                        self.game.level.player.weapon_index -= 1
-                    else:
-                        self.game.level.player.weapon_index = 4
-
-                    self.game.level.player.weapon = list(Settings.weapon_data.keys())[self.game.level.player.weapon_index]
-                 
-                   
-                if keys[pygame.K_e] and self.game.level.player.can_switch_weapon:
-                    
-                    self.game.level.player.can_switch_weapon = False
-                    self.game.level.player.weapon_switch_time = pygame.time.get_ticks()
-                    
                     if self.game.level.player.weapon_index < len(list(Settings.weapon_data)) - 1:
                         self.game.level.player.weapon_index += 1
                     else:
                         self.game.level.player.weapon_index = 0
 
                     self.game.level.player.weapon = list(Settings.weapon_data.keys())[self.game.level.player.weapon_index]
+                 
+                   
+                if keys[pygame.K_e] and self.game.level.player.can_switch_magic:
+                    
+                    self.game.level.player.can_switch_magic = False
+                    self.game.level.player.magic_switch_time = pygame.time.get_ticks()
+                    
+                    if self.game.level.player.magic_index < len(list(Settings.magic_data)) - 1:
+                        self.game.level.player.magic_index += 1
+                    else:
+                        self.game.level.player.magic_index = 0
+
+                    self.game.level.player.magic = list(Settings.magic_data.keys())[self.game.level.player.magic_index]
 
 """     for event in pygame.event.get():
             if event.type == pygame.QUIT:
