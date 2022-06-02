@@ -78,6 +78,7 @@ class Level():
 
     def update(self):
         self.visible_sprites.update()
+        self.ui.display(self.player)
         
     def draw(self):
         self.visible_sprites.custom_draw(self.player)

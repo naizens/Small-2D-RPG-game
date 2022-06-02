@@ -8,9 +8,7 @@ class Player(pygame.sprite.Sprite):
         
         self.game = game
         
-        self.image = pygame.image.load(os.path.join(Settings.test_path,"player.png")).convert_alpha()
-        self.x, self.y = self.image.get_size()
-        self.image = pygame.transform.scale(self.image, (self.x*Settings.scaling, self.y*Settings.scaling))
+        self.image = pygame.image.load(os.path.join(Settings.idle_player_path,"idle_down.png")).convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-50, -60)
 
