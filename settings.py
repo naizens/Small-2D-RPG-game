@@ -40,3 +40,5 @@ class Settings():
         "rapier": {"cooldown": 50, "damage": 8,"graphic": os.path.join(rapier_path, "rapier.png")},
         "sai": {"cooldown": 80, "damage": 10,"graphic": os.path.join(sai_path, "sai.png")}
     }
+    
+    player_stats = {"health": 100, "energy": 100, "attack": 10, "magic": 4, "speed": 5}

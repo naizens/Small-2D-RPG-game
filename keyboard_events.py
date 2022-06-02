@@ -1,4 +1,5 @@
 import pygame
+from settings import Settings
 
 class Inputs():
     def __init__(self, game) -> None:
@@ -9,7 +10,6 @@ class Inputs():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.game.running = False
-                
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_ESCAPE]:
@@ -48,6 +48,32 @@ class Inputs():
                     self.game.level.player.attacking = True
                     self.attack_time = pygame.time.get_ticks()
                     print("Magic")
+                
+                    
+                if keys[pygame.K_q] and self.game.level.player.can_switch_weapon:
+                    
+                    self.game.level.player.can_switch_weapon = False
+                    self.game.level.player.weapon_switch_time = pygame.time.get_ticks()
+                    
+                    if self.game.level.player.weapon_index > 0:
+                        self.game.level.player.weapon_index -= 1
+                    else:
+                        self.game.level.player.weapon_index = 4
+
+                    self.game.level.player.weapon = list(Settings.weapon_data.keys())[self.game.level.player.weapon_index]
+                 
+                   
+                if keys[pygame.K_e] and self.game.level.player.can_switch_weapon:
+                    
+                    self.game.level.player.can_switch_weapon = False
+                    self.game.level.player.weapon_switch_time = pygame.time.get_ticks()
+                    
+                    if self.game.level.player.weapon_index < len(list(Settings.weapon_data)) - 1:
+                        self.game.level.player.weapon_index += 1
+                    else:
+                        self.game.level.player.weapon_index = 0
+
+                    self.game.level.player.weapon = list(Settings.weapon_data.keys())[self.game.level.player.weapon_index]
 
 """     for event in pygame.event.get():
             if event.type == pygame.QUIT:

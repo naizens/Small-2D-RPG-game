@@ -1,5 +1,6 @@
-from re import S
+from settings import Settings
 import pygame
+import os
 
 class Weapon(pygame.sprite.Sprite):
     def __init__(self, player, groups) -> None:
@@ -8,7 +9,8 @@ class Weapon(pygame.sprite.Sprite):
         print(directon)
         
         #graphics
-        self.image = pygame.Surface((40, 40))
+        full_path = os.path.join(Settings.weapon_path, player.weapon, f"{directon}.png")
+        self.image = pygame.image.load(full_path).convert_alpha()
         
         #placement
         if directon == "right":
@@ -19,5 +21,3 @@ class Weapon(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(midbottom = player.rect.midtop + pygame.math.Vector2(-16, 4))
         elif directon == "down":
             self.rect = self.image.get_rect(midtop = player.rect.midbottom + pygame.math.Vector2(-16, 0))
-        else:
-            self.rect = self.image.get_rect(center = player.rect.center)

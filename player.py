@@ -3,7 +3,7 @@ from settings import Settings
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, game, create_attack):
+    def __init__(self, pos, groups, obstacle_sprites, game, create_attack, destroy_attack):
         super().__init__(groups)
         
         self.game = game
@@ -14,19 +14,36 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-50, -60)
 
+        # Setup for the graphics
         self.import_player_assets()
         self.status = "down"
         self.frame_index = 0
         self.animation_speed = 0.15
         
+        # Parameters for movement
         self.direction = pygame.math.Vector2()
-        self.speed = 5
         self.attacking = False
         self.attack_cooldown = 400
         self.attack_time = None
-        self.create_attack = create_attack
 
         self.obstacle_sprites = obstacle_sprites
+        
+        #Weapon setup
+        self.create_attack = create_attack
+        self.destroy_attack = destroy_attack
+        self.weapon_index = 3
+        self.weapon = list(Settings.weapon_data.keys())[self.weapon_index]
+        self.can_switch_weapon = True
+        self.weapon_switch_time = None
+        self.switch_duration_cd = 200
+        
+        # Stats of the Player
+        self.stats = Settings.player_stats
+        self.health = self.stats["health"]
+        self.energy = self.stats["energy"]
+        self.exp = 123
+        self.speed = self.stats["speed"]
+               
 
     def import_player_assets(self):
         character_path = Settings.character_path
@@ -89,6 +106,11 @@ class Player(pygame.sprite.Sprite):
         if self.attacking:
             if current_time - self.game.input_manager.attack_time >= self.attack_cooldown:
                 self.attacking = False
+                self.destroy_attack()
+                
+        if not self.can_switch_weapon:
+            if current_time - self.weapon_switch_time >= self.switch_duration_cd:
+                self.can_switch_weapon = True
     
     def animate(self):
         animation = self.animations[self.status]
@@ -106,5 +128,3 @@ class Player(pygame.sprite.Sprite):
         self.get_status()
         self.animate()
         self.move(self.speed)
-        
-

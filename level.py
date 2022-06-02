@@ -18,6 +18,8 @@ class Level():
 
         self.game = game
         
+        self.current_attack = None
+        
         self.create_map()
 
     def create_map(self):
@@ -53,7 +55,7 @@ class Level():
                         
                         if style == "entitys":
                             if col == "0":
-                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, self.game, self.create_attack)
+                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, self.game, self.create_attack, self.destroy_attack)
                             else:
                                 random_entity = graphics["entitys"][random.choice(list(graphics["entitys"]))]
                                 Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "entity", random_entity)
@@ -63,7 +65,12 @@ class Level():
         #self.player = Player((2700,1000),[self.visible_sprites], self.obstacle_sprites)
 
     def create_attack(self):
-        Weapon(self.player,[self.visible_sprites])
+        self.current_attack = Weapon(self.player,[self.visible_sprites])
+        
+    def destroy_attack(self):
+        if self.current_attack:
+            self.current_attack.kill()
+        self.current_attack = None
 
     def update(self):
         self.visible_sprites.update()
