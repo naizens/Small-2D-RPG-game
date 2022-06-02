@@ -5,6 +5,7 @@ from player import Player
 import os
 from support import import_csv_layout, import_folder
 import random
+from weapons import Weapon
 from debug import debug
 
 class Level():
@@ -52,7 +53,7 @@ class Level():
                         
                         if style == "entitys":
                             if col == "0":
-                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, self.game)
+                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, self.game, self.create_attack)
                             else:
                                 random_entity = graphics["entitys"][random.choice(list(graphics["entitys"]))]
                                 Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "entity", random_entity)
@@ -61,7 +62,8 @@ class Level():
 
         #self.player = Player((2700,1000),[self.visible_sprites], self.obstacle_sprites)
 
-
+    def create_attack(self):
+        Weapon(self.player,[self.visible_sprites])
 
     def update(self):
         self.visible_sprites.update()

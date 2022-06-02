@@ -3,7 +3,7 @@ from settings import Settings
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, game):
+    def __init__(self, pos, groups, obstacle_sprites, game, create_attack):
         super().__init__(groups)
         
         self.game = game
@@ -24,6 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.attacking = False
         self.attack_cooldown = 400
         self.attack_time = None
+        self.create_attack = create_attack
 
         self.obstacle_sprites = obstacle_sprites
 
