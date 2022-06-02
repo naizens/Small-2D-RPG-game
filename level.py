@@ -1,26 +1,34 @@
 import pygame
+import os
+import random
+
 from settings import Settings
 from tile import Tile
 from player import Player
-import os
 from support import import_csv_layout, import_folder
-import random
 from weapons import Weapon
-from debug import debug
+from ui import Ui
 
 class Level():
     def __init__(self, game):
-
+        
+        # Get the display surface
         self.display_surface = pygame.display.get_surface()
 
+        # Create sprite groups
         self.visible_sprites = YSortCameraGroup()  # Group of sprites that are visible
         self.obstacle_sprites = pygame.sprite.Group() # Group of the sprites that the Player can collide with
 
         self.game = game
         
+        # Sprites for the attack
         self.current_attack = None
         
+        # Setup for the Sprites
         self.create_map()
+        
+        # Ui
+        self.ui = Ui()
 
     def create_map(self):
         layouts = {
@@ -60,10 +68,6 @@ class Level():
                                 random_entity = graphics["entitys"][random.choice(list(graphics["entitys"]))]
                                 Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "entity", random_entity)
                             
-
-
-        #self.player = Player((2700,1000),[self.visible_sprites], self.obstacle_sprites)
-
     def create_attack(self):
         self.current_attack = Weapon(self.player,[self.visible_sprites])
         
@@ -75,10 +79,8 @@ class Level():
     def update(self):
         self.visible_sprites.update()
         
-
     def draw(self):
         self.visible_sprites.custom_draw(self.player)
-
 
 
 class YSortCameraGroup(pygame.sprite.Group):
