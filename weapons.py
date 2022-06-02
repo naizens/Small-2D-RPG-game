@@ -6,7 +6,6 @@ class Weapon(pygame.sprite.Sprite):
     def __init__(self, player, groups) -> None:
         super().__init__(groups)
         directon = player.status.split("_", 1)[0]
-        print(directon)
         
         #graphics
         full_path = os.path.join(Settings.weapon_path, player.weapon, f"{directon}.png")

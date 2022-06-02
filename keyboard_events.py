@@ -40,7 +40,6 @@ class Inputs():
                     self.game.level.player.attacking = True
                     self.attack_time = pygame.time.get_ticks()
                     self.game.level.player.create_attack()
-                    print("Attack")
                     
                 ## Magic Key
                 

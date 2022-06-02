@@ -31,7 +31,7 @@ class Game(object):
             self.update()
             self.draw()
 
-            debug(self.level.player.status)
+            #debug(self.level.player.status)
             
             
 
@@ -54,7 +54,7 @@ class Game(object):
 
     def draw(self):
         self.level.draw()
-        self.screen.blit(self.update_fps(), (10, 40))
+        self.screen.blit(self.update_fps(), (Settings.width - 50, 10))
 
 if __name__ == "__main__":
     game = Game()

@@ -45,13 +45,14 @@ class Settings():
     energy_bar_width = 140
     item_box_size = 80
     ui_font = os.path.join(font_path, "CompassPro.ttf")
-    ui_font_size = 18
+    ui_font_size = 25
     
     # General colors
     water_color = "#4fa4b8"
-    ui_bg_color = "black"
+    ui_bg_color = "#302f2f"
     ui_border_color = "#111111"
-    text_color = "#eeeeee"
+    ui_text_color = "#eeeeee"
+    ui_border_radius = 8
     
     # Ui colors
     health_color = "#e34230"
