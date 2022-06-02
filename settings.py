@@ -44,6 +44,19 @@ class Settings():
     health_bar_width = 200
     energy_bar_width = 140
     item_box_size = 80
+    ui_font = os.path.join(font_path, "CompassPro.ttf")
+    ui_font_size = 18
+    
+    # General colors
+    water_color = "#4fa4b8"
+    ui_bg_color = "black"
+    ui_border_color = "#111111"
+    text_color = "#eeeeee"
+    
+    # Ui colors
+    health_color = "#e34230"
+    energy_color = "#5373e6"
+    ui_border_color_active = "#ffd700"
     
     weapon_data = {
         "sword": {"cooldown": 100, "damage": 15,"graphic": os.path.join(sword_path, "sword.png")},

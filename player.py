@@ -52,7 +52,6 @@ class Player(pygame.sprite.Sprite):
         for animation in self.animations.keys():
             full_path = os.path.join(character_path, animation)
             self.animations[animation] = list(import_folder(full_path).values())
-        print(self.animations)
 
     def get_status(self):
         if self.direction.x == 0 and self.direction.y == 0:
