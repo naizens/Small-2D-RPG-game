@@ -63,7 +63,9 @@ class Level():
                         
                         if style == "entitys":
                             if col == "0":
-                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, self.game, self.create_attack, self.destroy_attack)
+                                self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, 
+                                                     self.game, self.create_attack, self.destroy_attack,
+                                                     self.create_magic)
                             else:
                                 random_entity = graphics["entitys"][random.choice(list(graphics["entitys"]))]
                                 Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "entity", random_entity)
@@ -76,9 +78,11 @@ class Level():
             self.current_attack.kill()
         self.current_attack = None
 
+    def create_magic(self, style, strength, cost):
+        print(style, strength, cost)
+
     def update(self):
-        self.visible_sprites.update()
-        
+        self.visible_sprites.update() 
         
     def draw(self):
         self.visible_sprites.custom_draw(self.player)
@@ -102,8 +106,8 @@ class YSortCameraGroup(pygame.sprite.Group):
     def custom_draw(self, player):
 
         #get the offset
-        self.offset.x = player.rect.x - self.half_width
-        self.offset.y = player.rect.y - self.half_heigth
+        self.offset.x = player.rect.x - self.half_width + player.rect.width // 2
+        self.offset.y = player.rect.y - self.half_heigth + player.rect.height // 2
         
         #draw the floor
         floor_offset_pos = self.floor_rect.topleft - self.offset

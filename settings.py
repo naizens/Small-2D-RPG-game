@@ -23,6 +23,7 @@ class Settings():
     character_path = os.path.join(image_path, "player")
     weapon_path = os.path.join(image_path, "weapons")
     player_path = os.path.join(image_path, "player")
+    particle_path = os.path.join(image_path, "particles")
     idle_player_path = os.path.join(character_path, "down_idle")
     
     #pathes for the weapons
@@ -31,6 +32,11 @@ class Settings():
     axe_path = os.path.join(weapon_path, "axe")
     rapier_path = os.path.join(weapon_path, "rapier")
     sai_path = os.path.join(weapon_path, "sai")
+    
+    #pathes for the magic spells
+    
+    fire_path = os.path.join(particle_path, "flame")
+    heal_path = os.path.join(particle_path, "heal")
 
     # Path for the "maps"/csv-files
     map_path = os.path.join(asset_path, "map")
@@ -46,18 +52,19 @@ class Settings():
     item_box_size = 80
     ui_font = os.path.join(font_path, "CompassPro.ttf")
     ui_font_size = 25
+    ui_border_radius = 8
     
     # General colors
     water_color = "#4fa4b8"
     ui_bg_color = "#302f2f"
     ui_border_color = "#111111"
     ui_text_color = "#eeeeee"
-    ui_border_radius = 8
+    ui_border_color_active = "#ffd700"
     
     # Ui colors
     health_color = "#e34230"
     energy_color = "#5373e6"
-    ui_border_color_active = "#ffd700"
+    
     
     weapon_data = {
         "sword": {"cooldown": 100, "damage": 15,"graphic": os.path.join(sword_path, "sword.png")},
@@ -65,6 +72,11 @@ class Settings():
         "axe": {"cooldown": 300, "damage": 20,"graphic": os.path.join(axe_path, "axe.png")},
         "rapier": {"cooldown": 50, "damage": 8,"graphic": os.path.join(rapier_path, "rapier.png")},
         "sai": {"cooldown": 80, "damage": 10,"graphic": os.path.join(sai_path, "sai.png")}
+    }
+    
+    magic_data = {
+        "flame": {"strength": 5, "cost": 20, "graphic": os.path.join(fire_path, "fire.png")},
+        "heal": {"strength": 20, "cost": 10, "graphic": os.path.join(heal_path, "heal.png")},
     }
     
     player_stats = {"health": 100, "energy": 100, "attack": 10, "magic": 4, "speed": 5}

@@ -3,7 +3,7 @@ from settings import Settings
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, game, create_attack, destroy_attack):
+    def __init__(self, pos, groups, obstacle_sprites, game, create_attack, destroy_attack, create_magic):
         super().__init__(groups)
         
         self.game = game
@@ -35,11 +35,18 @@ class Player(pygame.sprite.Sprite):
         self.weapon_switch_time = None
         self.switch_duration_cd = 200
         
+        # Magic spell setup
+        self.create_magic = create_magic
+        self.magic_index = 0
+        self.magic = list(Settings.magic_data.keys())[self.magic_index]
+        self.can_switch_weapon = True
+        self.magic_switch_time = None
+        
         # Stats of the Player
         self.stats = Settings.player_stats
-        self.health = self.stats["health"]
+        self.health = self.stats["health"] * 0.8
         self.energy = self.stats["energy"]
-        self.exp = 123
+        self.exp = 187
         self.speed = self.stats["speed"]
                
 
@@ -123,5 +130,7 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.cooldowns()
         self.get_status()
-        self.animate()
         self.move(self.speed)
+        
+    def draw(self):
+        self.animate()

@@ -1,5 +1,6 @@
 import pygame
 from settings import Settings
+from weapons import Weapon
 
 class Ui:
     def __init__(self) -> None:
@@ -11,6 +12,13 @@ class Ui:
         # bar setup
         self.healt_bar_rect = pygame.Rect(10, 10, Settings.health_bar_width, Settings.bar_height)
         self.energy_bar_rect = pygame.Rect(10, 34 , Settings.energy_bar_width, Settings.bar_height)
+        
+        #convert weapon dict to list
+        self.weapon_graphics = []
+        for weapon in Settings.weapon_data.values():
+            path = weapon["graphic"]
+            weapon = pygame.image.load(path).convert_alpha()
+            self.weapon_graphics.append(weapon)
     
     def show_bar(self, current, max_ammount, bg_rect, color):
         pygame.draw.rect(self.display_surface, Settings.ui_bg_color, bg_rect, border_radius = Settings.ui_border_radius)
@@ -33,10 +41,21 @@ class Ui:
         self.display_surface.blit(text_surface, text_rect)
         pygame.draw.rect(self.display_surface, Settings.ui_border_color, text_rect.inflate(10, 10), 3 , border_radius = Settings.ui_border_radius)
     
-    def item_box(self, left, top):
+    def item_box(self, left, top, has_switched):
         bg_rect = pygame.Rect(left, top, Settings.item_box_size, Settings.item_box_size)
         pygame.draw.rect(self.display_surface, Settings.ui_bg_color, bg_rect, border_radius = Settings.ui_border_radius)
-        pygame.draw.rect(self.display_surface, Settings.ui_border_color, bg_rect, 3 ,border_radius = Settings.ui_border_radius)
+        if has_switched:
+            pygame.draw.rect(self.display_surface, Settings.ui_border_color_active, bg_rect, 3 ,border_radius = Settings.ui_border_radius)
+        else:
+            pygame.draw.rect(self.display_surface, Settings.ui_border_color, bg_rect, 3 ,border_radius = Settings.ui_border_radius)
+        return bg_rect
+    
+    def weapon_overlay(self, weapon_index, has_switched):
+        bg_rect = self.item_box(Settings.width // 2 - Settings.item_box_size // 2 , Settings.heigth - (Settings.item_box_size + 10), has_switched)
+        weapon_surface = self.weapon_graphics[weapon_index]
+        weapon_rect = weapon_surface.get_rect(center = bg_rect.center)
+        
+        self.display_surface.blit(weapon_surface, weapon_rect)
         
     def draw(self, player):
         self.show_bar(player.health, player.stats["health"], self.healt_bar_rect, Settings.health_color)
@@ -44,5 +63,5 @@ class Ui:
         
         self.show_exp(player.exp)
         
-        self.item_box(Settings.width // 2 - Settings.item_box_size // 2 , Settings.heigth - 90)
+        self.weapon_overlay(player.weapon_index, not player.can_switch_weapon)
         

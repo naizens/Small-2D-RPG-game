@@ -46,8 +46,11 @@ class Inputs():
                 if keys[pygame.K_LCTRL]:
                     self.game.level.player.attacking = True
                     self.attack_time = pygame.time.get_ticks()
-                    print("Magic")
-                
+                    
+                    style = list(Settings.magic_data.keys())[self.game.level.player.magic_index]
+                    strength = list(Settings.magic_data.values())[self.game.level.player.magic_index]["strength"] + self.game.level.player.stats["magic"]
+                    cost = list(Settings.magic_data.values())[self.game.level.player.magic_index]["cost"]
+                    self.game.level.player.create_magic(style, strength, cost)
                     
                 if keys[pygame.K_q] and self.game.level.player.can_switch_weapon:
                     

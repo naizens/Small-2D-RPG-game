@@ -54,6 +54,7 @@ class Game(object):
 
     def draw(self):
         self.level.draw()
+        self.level.player.draw()
         self.screen.blit(self.update_fps(), (Settings.width - 50, 10))
 
 if __name__ == "__main__":
