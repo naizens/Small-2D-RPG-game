@@ -16,7 +16,11 @@ class Settings():
     font_path = os.path.join(asset_path, "fonts")
     test_path = os.path.join(asset_path, "test")
     
-    # Pathes for the images
+    # Specific Path setup
+    
+    attack_sound_path = os.path.join(sound_path, "attack")
+    
+    ## Pathes for the images
     object_path = os.path.join(image_path, "objects")
     animal_path = os.path.join(image_path, "animals")
     monster_path = os.path.join(image_path, "monsters")
@@ -26,19 +30,19 @@ class Settings():
     particle_path = os.path.join(image_path, "particles")
     idle_player_path = os.path.join(character_path, "down_idle")
     
-    #pathes for the weapons
+    ## Pathes for the weapons
     sword_path = os.path.join(weapon_path, "sword")
     lance_path = os.path.join(weapon_path, "lance")
     axe_path = os.path.join(weapon_path, "axe")
     rapier_path = os.path.join(weapon_path, "rapier")
     sai_path = os.path.join(weapon_path, "sai")
     
-    #pathes for the magic spells
+    ## Pathes for the magic spells
     
     fire_path = os.path.join(particle_path, "flame")
     heal_path = os.path.join(particle_path, "heal")
 
-    # Path for the "maps"/csv-files
+    ## Path for the "maps"/csv-files
     map_path = os.path.join(asset_path, "map")
 
     # For the Size of the Tiles and the scaling of the Tiles
@@ -80,3 +84,19 @@ class Settings():
     }
     
     player_stats = {"health": 100, "energy": 100, "attack": 10, "magic": 4, "speed": 5}
+    
+    # Enemys:
+    
+    monster_data = {
+        "slime": {"health": 80, "exp": 100, "damage": 8, "attack_type": "slash", 
+                  "attack_sound": os.path.join(attack_sound_path, "slime_attack.mp3"), 
+                  "speed": 1, "resistance": 3 , "attack_radius": 40, "notice_radius": 250},
+        
+        "wolf": {"health": 60, "exp": 120, "damage": 20, "attack_type": "claw", 
+                  "attack_sound": os.path.join(attack_sound_path, "wolf_attack.mp3"), 
+                  "speed": 4, "resistance": 3 , "attack_radius": 60, "notice_radius": 360},
+        
+        "skeleton": {"health": 90, "exp": 110, "damage": 12, "attack_type": "slash", 
+                  "attack_sound": os.path.join(attack_sound_path, "skeleton_attack.mp3"), 
+                  "speed": 2, "resistance": 3 , "attack_radius": 50, "notice_radius": 300},
+    }
