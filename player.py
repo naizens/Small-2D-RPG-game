@@ -42,10 +42,15 @@ class Player(Entity):
         
         # Stats of the Player
         self.stats = Settings.player_stats
-        self.health = self.stats["health"] * 0.8
+        self.health = self.stats["health"]
         self.energy = self.stats["energy"]
         self.exp = 187
         self.speed = self.stats["speed"]
+        
+        # Timer for the damage
+        self.vulnerable = True
+        self.hurt_time = None
+        self.invulnerability_duration = 500
                
 
     def import_player_assets(self):
@@ -78,7 +83,7 @@ class Player(Entity):
     def cooldowns(self):
         current_time = pygame.time.get_ticks()
         if self.attacking:
-            if current_time - self.game.input_manager.attack_time >= self.attack_cooldown:
+            if current_time - self.game.input_manager.attack_time >= self.attack_cooldown + Settings.weapon_data[self.weapon]["cooldown"]:
                 self.attacking = False
                 self.destroy_attack()
                 
@@ -89,6 +94,10 @@ class Player(Entity):
         if not self.can_switch_magic:
             if current_time - self.magic_switch_time >= self.switch_duration_cd:
                 self.can_switch_magic = True
+                
+        if not self.vulnerable:
+            if current_time - self.hurt_time >= self.invulnerability_duration:
+                self.vulnerable = True
     
     def animate(self):
         animation = self.animations[self.status]
@@ -100,6 +109,17 @@ class Player(Entity):
             
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center = self.hitbox.center)
+        
+        # flickering
+        if not self.vulnerable:
+            alpha = self.wave_value()
+            self.image.set_alpha(alpha)
+        else: self.image.set_alpha(255)
+    
+    def get_full_weapon_damage(self):
+        base_damage = self.stats["attack"]
+        weapon_damage = Settings.weapon_data[self.weapon]["damage"]
+        return base_damage + weapon_damage
     
     def update(self):
         self.cooldowns()

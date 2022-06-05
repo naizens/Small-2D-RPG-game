@@ -5,6 +5,7 @@ import os
 class Weapon(pygame.sprite.Sprite):
     def __init__(self, player, groups) -> None:
         super().__init__(groups)
+        self.sprite_type = "weapon"
         directon = player.status.split("_", 1)[0]
         
         #graphics
