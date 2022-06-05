@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         
         self.image = pygame.image.load(os.path.join(Settings.idle_player_path,"idle_down.png")).convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
-        self.hitbox = self.rect.inflate(-50, -60)
+        self.hitbox = self.rect.inflate(-50, -40)
 
         # Setup for the graphics
         self.import_player_assets()
