@@ -90,11 +90,11 @@ class Settings():
     monster_data = {
         "slime": {"health": 80, "exp": 100, "damage": 8, "attack_type": "slash", 
                   "attack_sound": os.path.join(attack_sound_path, "slime_attack.mp3"), 
-                  "speed": 1, "resistance": 3 , "attack_radius": 40, "notice_radius": 250},
+                  "speed": 1.5, "resistance": 3 , "attack_radius": 40, "notice_radius": 280},
         
         "wolf": {"health": 60, "exp": 120, "damage": 20, "attack_type": "claw", 
                   "attack_sound": os.path.join(attack_sound_path, "wolf_attack.mp3"), 
-                  "speed": 4, "resistance": 3 , "attack_radius": 60, "notice_radius": 360},
+                  "speed": 3, "resistance": 3 , "attack_radius": 60, "notice_radius": 340},
         
         "skeleton": {"health": 90, "exp": 110, "damage": 12, "attack_type": "slash", 
                   "attack_sound": os.path.join(attack_sound_path, "skeleton_attack.mp3"), 

@@ -1,12 +1,11 @@
-import pygame
-import os
-import random
+import pygame, os, random
 
 from settings import Settings
 from tile import Tile
 from player import Player
 from support import import_csv_layout, import_folder
 from weapons import Weapon
+from enemy import Enemy
 from ui import Ui
 
 class Level():
@@ -40,7 +39,7 @@ class Level():
         graphics = {
             "animals": import_folder(Settings.animal_path),
             "objects": import_folder(Settings.object_path),
-            "entitys": import_folder(Settings.monster_path),
+            #"entitys": import_folder(Settings.monster_path),
         }
         
         
@@ -67,11 +66,13 @@ class Level():
                                                      self.game, self.create_attack, self.destroy_attack,
                                                      self.create_magic)
                             else:
-                                random_entity = graphics["entitys"][random.choice(list(graphics["entitys"]))]
-                                Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "entity", random_entity)
+                                enemy_types = ["wolf", "skeleton", "slime"]
+                                random_enemy = random.choice(enemy_types)
+                                
+                                Enemy(random_enemy, (x,y),[self.visible_sprites], self.obstacle_sprites)
                             
     def create_attack(self):
-        self.current_attack = Weapon(self.player,[self.visible_sprites])
+        self.current_attack = Weapon(self.player,[self.visible_sprites], self.obstacle_sprites)
         
     def destroy_attack(self):
         if self.current_attack:
@@ -82,7 +83,8 @@ class Level():
         print(style, strength, cost)
 
     def update(self):
-        self.visible_sprites.update() 
+        self.visible_sprites.update()
+        self.visible_sprites.update_enemy(self.player)
         
     def draw(self):
         self.visible_sprites.custom_draw(self.player)
@@ -117,4 +119,9 @@ class YSortCameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_pos)
+            
+    def update_enemy(self, player):
+        enemy_sprites = [sprite for sprite in self.sprites() if hasattr(sprite, "sprite_type") and sprite.sprite_type == "enemy"]
+        for enemy in enemy_sprites:
+            enemy.enemy_update(player)
     

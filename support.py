@@ -1,7 +1,6 @@
 from csv import reader
-import os 
+import pygame, os
 from settings import Settings
-import pygame
 
 animal_path = os.path.join(Settings.image_path, "animals")
 monster_path = os.path.join(Settings.image_path, "monsters")
