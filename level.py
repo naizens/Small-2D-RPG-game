@@ -1,4 +1,5 @@
 import pygame, os, random
+from particles import AnimationPlayer
 
 from settings import Settings
 from tile import Tile
@@ -6,6 +7,7 @@ from player import Player
 from support import import_csv_layout, import_folder
 from weapons import Weapon
 from enemy import Enemy
+from particles import AnimationPlayer
 from ui import Ui
 
 class Level():
@@ -30,6 +32,9 @@ class Level():
         
         # Ui
         self.ui = Ui()
+        
+        #particles
+        self.animation_player = AnimationPlayer()
 
     def create_map(self):
         layouts = {
@@ -99,6 +104,7 @@ class Level():
             self.player.health -= amount
             self.player.vulnerable = False
             self.player.hurt_time = pygame.time.get_ticks()
+            self.animation_player.create_particles(attack_type, self.player.rect.center, [self.visible_sprites])
             # spawn particles
         
                     
