@@ -21,6 +21,7 @@ class Level():
         self.visible_sprites = YSortCameraGroup()  # Group of sprites that are visible
         self.obstacle_sprites = pygame.sprite.Group() # Group of the sprites that the Player can collide with
 
+        
         self.game = game
         
         # Sprites for the attack
@@ -121,7 +122,7 @@ class Level():
         
     def add_exp(self, amount):
         self.player.exp += amount    
-                    
+               
     def update(self):
         self.visible_sprites.update()
         self.visible_sprites.update_enemy(self.player)
