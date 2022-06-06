@@ -99,6 +99,10 @@ class Settings():
         "skeleton": {"health": 90, "exp": 110, "damage": 12, "attack_type": "slash", 
                   "attack_sound": os.path.join(attack_sound_path, "skeleton_attack.mp3"), 
                   "speed": 2, "resistance": 3 , "attack_radius": 50, "notice_radius": 300},
+        
+        "ogre": {"health": 200, "exp": 220, "damage": 45, "attack_type": "slash", 
+                  "attack_sound": os.path.join(attack_sound_path, "ogre_attack.mp3"), 
+                  "speed": 2, "resistance": 4 , "attack_radius": 70, "notice_radius": 320}
     }
     
     animal_data = {

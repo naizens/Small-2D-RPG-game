@@ -48,9 +48,7 @@ class Level():
             "entitys": import_csv_layout(os.path.join(Settings.map_path,"map_Entitys.csv")),          
             }
         graphics = {
-            #"animals": import_folder(Settings.animal_path),
             "objects": import_folder(Settings.object_path),
-            #"entitys": import_folder(Settings.monster_path),
         }
         
         
@@ -77,13 +75,18 @@ class Level():
                                 self.player = Player((x,y),[self.visible_sprites], self.obstacle_sprites, 
                                                      self.game, self.create_attack, self.destroy_attack,
                                                      self.create_magic)
+                            elif col == "2":
+                                enemy_type = "ogre"
+                                Enemy(enemy_type, (x,y),[self.visible_sprites, self.attackable_sprites],
+                                      self.obstacle_sprites, self.damage_player, self.trigger_death_particles,
+                                      self.add_exp, self.game)
                             else:
                                 enemy_types = ["wolf", "skeleton", "slime"]
                                 random_enemy = random.choice(enemy_types)
                                 
                                 Enemy(random_enemy, (x,y),[self.visible_sprites, self.attackable_sprites],
                                       self.obstacle_sprites, self.damage_player, self.trigger_death_particles,
-                                      self.add_exp)
+                                      self.add_exp, self.game)
                             
     def create_attack(self):
         self.current_attack = Weapon(self.player,[self.visible_sprites, self.attack_sprites])
@@ -100,7 +103,6 @@ class Level():
         if style == "flame":
             self.magic_player.flame(self.player, cost, [self.visible_sprites, self.attack_sprites])
         
-
     def player_attack_logic(self):
         if self.attack_sprites:
             for attack_sprite in self.attack_sprites:
@@ -116,7 +118,6 @@ class Level():
             self.player.vulnerable = False
             self.player.hurt_time = pygame.time.get_ticks()
             self.animation_player.create_particles(attack_type, self.player.rect.center, [self.visible_sprites])
-            # spawn particles
     
     def trigger_death_particles(self, pos, particle_type):
         

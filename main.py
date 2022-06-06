@@ -2,7 +2,7 @@ import pygame, sys, os
 from settings import Settings
 from level import Level
 from keyboard_events import Inputs
-from menus import StartScreen, PauseScreen, GameOverScreen
+from menus import StartScreen, PauseScreen, GameOverScreen, WonScreen
 from debug import debug
 
 
@@ -26,10 +26,12 @@ class Game(object):
         self.game_starting = True
         self.game_paused = False
         self.gameover = False
+        self.won = False
         
         self.start_screen = StartScreen()
         self.pause_screen = PauseScreen()
         self.gameover_screen = GameOverScreen()
+        self.won_screen = WonScreen()
         
     def run(self):
         self.running = True
@@ -40,13 +42,16 @@ class Game(object):
             
             if self.game_starting:
                 self.start_screen.draw(self.screen)
- 
-                
+  
             elif self.game_paused:
                 self.pause_screen.draw(self.screen)
 
             elif self.gameover:
                 self.gameover_screen.draw(self.screen)
+                
+            elif self.won:
+                print("Won")
+                self.won_screen.draw(self.screen)
             
             else:
                 self.screen.fill("#4fa4b8")

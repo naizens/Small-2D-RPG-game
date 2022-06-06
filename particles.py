@@ -27,7 +27,8 @@ class AnimationPlayer():
 			# monster deaths
 			"wolf": import_folder(smoke_path),
 			"slime": import_folder(smoke_path),
-			"skeleton": import_folder(smoke_path)
+			"skeleton": import_folder(smoke_path),
+            "ogre": import_folder(smoke_path),
 			
         }
 

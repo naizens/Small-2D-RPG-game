@@ -5,14 +5,15 @@ from support import import_folder
 
 
 class Enemy(Entity):
-    def __init__(self, monster_name , pos ,groups, obstacle_sprites, damage_player, trigger_death_particles, app_exp) -> None:
+    def __init__(self, monster_name , pos ,groups, obstacle_sprites, damage_player, trigger_death_particles, app_exp, game) -> None:
         super().__init__(groups)
         self.sprite_type = "enemy"
         
         self.import_graphics(monster_name)
         self.status = "idle"
         self.image = self.animations[self.status][self.frame_index]
-       
+
+        self.game = game
        
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-50, -40)
@@ -138,10 +139,17 @@ class Enemy(Entity):
             self.direction *= -self.resistance
     
     def check_death(self):
-        if self.health <= 0:
+        if self.health <= 0 and self.monster_name == "orge":
             self.kill()
             self.trigger_death_particles(self.rect.center, self.monster_name)
             self.add_exp(self.exp)
+            self.game.won = True
+            
+        elif self.health <= 0:
+            self.kill()
+            self.trigger_death_particles(self.rect.center, self.monster_name)
+            self.add_exp(self.exp)
+        
            
     def update(self):
         self.hit_reaction()
