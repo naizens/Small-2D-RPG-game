@@ -1,4 +1,4 @@
-import pygame, os
+import pygame, os, time
 from settings import Settings
 from entity import Entity
 from support import import_folder
@@ -143,6 +143,7 @@ class Enemy(Entity):
             self.kill()
             self.trigger_death_particles(self.rect.center, self.monster_name)
             self.add_exp(self.exp)
+            
             self.game.won = True
             
         elif self.health <= 0:

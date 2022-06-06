@@ -100,7 +100,7 @@ class GameOverScreen():
         self.pause_banner_rect = self.pause_banner.get_rect()
         self.pause_banner_rect.topleft = (Settings.width // 2 - self.pause_banner_rect.width // 2, Settings.heigth // 2 - self.pause_banner_rect.height // 2.5)
         
-        self.restart_button = pygame.image.load(os.path.join(button_path,"back_button.png")).convert_alpha()
+        self.restart_button = pygame.image.load(os.path.join(button_path,"restart_button.png")).convert_alpha()
         self.restart_button_rect = self.restart_button.get_rect()
         self.restart_button_rect.topleft = (Settings.width // 2 - self.restart_button_rect.width // 2, Settings.heigth // 2 - self.restart_button_rect.height // 2 - 10)
         
@@ -141,7 +141,7 @@ class WonScreen():
         self.pause_banner_rect = self.pause_banner.get_rect()
         self.pause_banner_rect.topleft = (Settings.width // 2 - self.pause_banner_rect.width // 2, Settings.heigth // 2 - self.pause_banner_rect.height // 2.5)
         
-        self.restart_button = pygame.image.load(os.path.join(button_path,"back_button.png")).convert_alpha()
+        self.restart_button = pygame.image.load(os.path.join(button_path,"restart_button.png")).convert_alpha()
         self.restart_button_rect = self.restart_button.get_rect()
         self.restart_button_rect.topleft = (Settings.width // 2 - self.restart_button_rect.width // 2, Settings.heigth // 2 - self.restart_button_rect.height // 2 - 10)
         
