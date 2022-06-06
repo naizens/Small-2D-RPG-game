@@ -7,8 +7,6 @@ pygame.font.init()
 class StartScreen():
     def __init__(self):
         
-        
-        
         self.font = pygame.font.Font(Settings.ui_font, 60)
         
         
@@ -24,8 +22,6 @@ class StartScreen():
         self.exit_button_rect.topleft = (Settings.width//2 - self.exit_button_rect.width//2, Settings.heigth//2 + self.exit_button_rect.height // 2 + 20)
         
         self.info_text = self.font.render(("Welcome to the game!"), 1 , "red")
-    
-    
     
         
     def start_is_hovered(self):
@@ -81,9 +77,7 @@ class PauseScreen():
         screen.blit(self.info_text, (Settings.width // 2 - self.info_text.get_rect().width // 2, Settings.heigth // 2 - self.info_text.get_rect().height // 2 - self.back_button_rect.height - 100))
         screen.blit(self.pause_banner, self.pause_banner_rect)
         screen.blit(self.back_button, self.back_button_rect)
-        screen.blit(self.exit_button, self.exit_button_rect)
-        
-        
+        screen.blit(self.exit_button, self.exit_button_rect)      
         
 class GameOverScreen():
     def __init__(self):

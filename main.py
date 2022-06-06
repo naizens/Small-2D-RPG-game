@@ -55,17 +55,12 @@ class Game(object):
                 self.gameover_screen.draw(self.screen)
                 
             elif self.won:
-                print("Won")
                 self.won_screen.draw(self.screen)
             
             else:
                 self.screen.fill(Settings.water_color)
                 self.draw()
                 self.update()
-                
-
-            #debug(self.level.player.status)
-            
             
 
             pygame.display.update()
@@ -87,7 +82,8 @@ class Game(object):
         self.level.draw()
         self.level.player.draw()
         self.screen.blit(self.update_fps(), (Settings.width - 50, 10))
+        
+if __name__ == '__main__':
 
-if __name__ == "__main__":
     game = Game()
     game.run()
