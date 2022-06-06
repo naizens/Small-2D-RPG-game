@@ -20,6 +20,11 @@ class Game(object):
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("Arial Bold", 40)
 
+        self.main_sound = pygame.mixer.Sound(os.path.join(Settings.sound_path, "main_music.wav"))
+        self.main_sound.set_volume(0.1)
+        self.main_sound.play(loops = -1)
+        
+        
         self.level = Level(self)
         self.input_manager = Inputs(self)
         
