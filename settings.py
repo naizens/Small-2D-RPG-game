@@ -6,7 +6,7 @@ class Settings():
     fps = 60
 
     title = "2D-RPG-Game"
-    volume = 0.1
+    volume = 0.2
 
     # General Path setup
     file_path = os.path.dirname(os.path.abspath(__file__))
@@ -89,19 +89,19 @@ class Settings():
     
     monster_data = {
         "slime": {"health": 80, "exp": 100, "damage": 8, "attack_type": "slash", 
-                  "attack_sound": os.path.join(attack_sound_path, "slime_attack.mp3"), 
+                  "attack_sound": os.path.join(attack_sound_path, "slime_attack.wav"), 
                   "speed": 1.5, "resistance": 3 , "attack_radius": 40, "notice_radius": 280},
         
         "wolf": {"health": 60, "exp": 120, "damage": 20, "attack_type": "claw", 
-                  "attack_sound": os.path.join(attack_sound_path, "wolf_attack.mp3"), 
+                  "attack_sound": os.path.join(attack_sound_path, "wolf_attack.wav"), 
                   "speed": 3, "resistance": 3 , "attack_radius": 60, "notice_radius": 340},
         
         "skeleton": {"health": 90, "exp": 110, "damage": 12, "attack_type": "slash", 
-                  "attack_sound": os.path.join(attack_sound_path, "skeleton_attack.mp3"), 
+                  "attack_sound": os.path.join(attack_sound_path, "skeleton_attack.wav"), 
                   "speed": 2, "resistance": 3 , "attack_radius": 50, "notice_radius": 300},
         
         "ogre": {"health": 200, "exp": 220, "damage": 45, "attack_type": "slash", 
-                  "attack_sound": os.path.join(attack_sound_path, "ogre_attack.mp3"), 
+                  "attack_sound": os.path.join(attack_sound_path, "ogre_attack.wav"), 
                   "speed": 2, "resistance": 4 , "attack_radius": 70, "notice_radius": 320}
     }
     

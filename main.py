@@ -54,7 +54,7 @@ class Game(object):
                 self.won_screen.draw(self.screen)
             
             else:
-                self.screen.fill("#4fa4b8")
+                self.screen.fill(Settings.water_color)
                 self.draw()
                 self.update()
                 

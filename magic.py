@@ -1,4 +1,4 @@
-import pygame
+import pygame, os
 from settings import Settings
 from random import randint
 
@@ -6,8 +6,15 @@ class MagicPlayer():
     def __init__(self, animation_player) -> None:
         self.animation_player = animation_player
         
+        self.heal_sound = pygame.mixer.Sound(os.path.join(Settings.sound_path, "heal.wav"))
+        self.heal_sound.set_volume(Settings.volume)
+        self.flame_sound = pygame.mixer.Sound(os.path.join(Settings.sound_path, "fire.wav"))
+        self.flame_sound.set_volume(Settings.volume)
+        
     def heal(self, player, strength, cost, groups):
         if player.energy >= cost:
+
+            self.heal_sound.play()
             player.energy -= cost
             player.health += strength
             if player.health >= player.stats["health"]:
@@ -19,7 +26,8 @@ class MagicPlayer():
     def flame(self, player, cost, groups):
         if player.energy >= cost:
             player.energy -= cost
-            
+
+            self.flame_sound.play()
             if player.status.split("_")[0] == "right":
                 direction = pygame.math.Vector2(1,0)
         
