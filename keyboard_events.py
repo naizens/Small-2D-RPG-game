@@ -23,6 +23,12 @@ class Inputs():
                     elif self.game.pause_screen.exit_is_hovered():
                         self.game.running = False
                         
+                    if self.game.gameover_screen.restart_is_hovered():
+                        pass
+                        #self.game.game.restart()
+                    elif self.game.gameover_screen.exit_is_hovered():
+                        self.game.running = False
+                        
                     
                     
                             

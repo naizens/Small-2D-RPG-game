@@ -46,7 +46,7 @@ class Game(object):
                 self.pause_screen.draw(self.screen)
 
             elif self.gameover:
-                pass
+                self.gameover_screen.draw(self.screen)
             
             else:
                 self.screen.fill("#4fa4b8")

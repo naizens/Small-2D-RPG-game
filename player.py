@@ -132,11 +132,16 @@ class Player(Entity):
         else:
             self.energy = self.stats["energy"]
     
+    def check_death(self):
+        if self.health <= 0:
+            self.game.gameover = True
+    
     def update(self):
         self.cooldowns()
         self.get_status()
         self.move(self.speed)
         self.energy_regen()
+        self.check_death()
         
     def draw(self):
         self.animate()
