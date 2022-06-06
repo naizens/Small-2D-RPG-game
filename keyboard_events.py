@@ -17,12 +17,19 @@ class Inputs():
                             self.game.game_starting = False
                     elif self.game.start_screen.exit_is_hovered():
                         self.game.running = False
+                        
+                    if self.game.pause_screen.resume_is_hovered():
+                        self.game.game_paused = False
+                    elif self.game.pause_screen.exit_is_hovered():
+                        self.game.running = False
+                        
+                    
                     
                             
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_ESCAPE]:
-                self.game.running = False
+                self.game.game_paused = True
 
         if not self.game.level.player.attacking:
             if keys[pygame.K_w]:

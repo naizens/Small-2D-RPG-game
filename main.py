@@ -29,7 +29,7 @@ class Game(object):
         
         self.start_screen = StartScreen()
         self.pause_screen = PauseScreen()
-        self.gameover_scern = GameOverScreen()
+        self.gameover_screen = GameOverScreen()
         
     def run(self):
         self.running = True
@@ -40,11 +40,11 @@ class Game(object):
             
             if self.game_starting:
                 self.start_screen.draw(self.screen)
+ 
                 
-
             elif self.game_paused:
-                pass
-            
+                self.pause_screen.draw(self.screen)
+
             elif self.gameover:
                 pass
             
