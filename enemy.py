@@ -139,7 +139,7 @@ class Enemy(Entity):
             self.direction *= -self.resistance
     
     def check_death(self):
-        if self.health <= 0 and self.monster_name == "orge":
+        if self.health <= 0 and self.monster_name == "ogre":
             self.kill()
             self.trigger_death_particles(self.rect.center, self.monster_name)
             self.add_exp(self.exp)
