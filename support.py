@@ -22,7 +22,6 @@ def import_folder(path):
             image_surf = pygame.image.load(full_path).convert_alpha()
             image_test = image.replace(".png","")
             surface_list[image_test] = image_surf
-            # surface_list.append(image_surf)
             
     return surface_list   
 

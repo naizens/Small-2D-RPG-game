@@ -11,21 +11,23 @@ class AnimationPlayer():
         heal_path = os.path.join(particle_path, "heal")
         smoke_path = os.path.join(particle_path, "smoke")
         
+        flames = os.path.join(flame_path, "frames")
+        
         self.frames = {
             
 			# magic
-			'flame': import_folder(os.path.join(flame_path, "frames")),
-			'aura': import_folder(aura_path),
-			'heal': import_folder(os.path.join(heal_path, "frames")),
+			"flame": import_folder(flames),
+			"aura": import_folder(aura_path),
+			"heal": import_folder(os.path.join(heal_path, "frames")),
 			
 			# attacks 
-			'claw': import_folder(os.path.join(particle_path, "claw")),
-			'slash': import_folder(os.path.join(particle_path, "slash")),
+			"claw": import_folder(os.path.join(particle_path, "claw")),
+			"slash": import_folder(os.path.join(particle_path, "slash")),
 
 			# monster deaths
-			'wolf': import_folder(smoke_path),
-			'slime': import_folder(smoke_path),
-			'skeleton': import_folder(smoke_path)
+			"wolf": import_folder(smoke_path),
+			"slime": import_folder(smoke_path),
+			"skeleton": import_folder(smoke_path)
 			
         }
 
@@ -43,7 +45,7 @@ class ParticleEffect(pygame.sprite.Sprite):
         self.frame_index = 0
         self.animation_speed = 0.15
         self.frames = animation_frames
-        self.image = self.frames[self.frame_index]
+        self.image = self.frames[str(self.frame_index)]
         self.rect = self.image.get_rect(center = pos)
         
 
@@ -53,7 +55,7 @@ class ParticleEffect(pygame.sprite.Sprite):
         if self.frame_index >= len(self.frames):
             self.kill()
         else:
-            self.image = self.frames[int(self.frame_index)]
+            self.image = self.frames[str(int(self.frame_index))]
             
     def update(self):
         self.animate()

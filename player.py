@@ -44,7 +44,7 @@ class Player(Entity):
         self.stats = Settings.player_stats
         self.health = self.stats["health"]
         self.energy = self.stats["energy"]
-        self.exp = 187
+        self.exp = 0
         self.speed = self.stats["speed"]
         
         # Timer for the damage
@@ -121,10 +121,22 @@ class Player(Entity):
         weapon_damage = Settings.weapon_data[self.weapon]["damage"]
         return base_damage + weapon_damage
     
+    def get_full_magic_damage(self):
+        base_damage = self.stats["magic"]
+        spell_damage = Settings.magic_data[self.magic]["strength"]
+        return base_damage + spell_damage
+    
+    def energy_regen(self):
+        if self.energy < self.stats["energy"]:
+            self.energy += 0.01 * self.stats["magic"]
+        else:
+            self.energy = self.stats["energy"]
+    
     def update(self):
         self.cooldowns()
         self.get_status()
         self.move(self.speed)
+        self.energy_regen()
         
     def draw(self):
         self.animate()
