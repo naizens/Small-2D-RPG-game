@@ -100,3 +100,9 @@ class Settings():
                   "attack_sound": os.path.join(attack_sound_path, "skeleton_attack.mp3"), 
                   "speed": 2, "resistance": 3 , "attack_radius": 50, "notice_radius": 300},
     }
+    
+    animal_data = {
+        "hen": {"health": 80, "notice_radius": 280},
+        
+        "pig": {"health": 60, "notice_radius": 340}
+    }

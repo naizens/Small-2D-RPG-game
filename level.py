@@ -9,6 +9,7 @@ from weapons import Weapon
 from enemy import Enemy
 from particles import AnimationPlayer
 from magic import MagicPlayer
+from animal import Animal
 from ui import Ui
 
 class Level():
@@ -47,7 +48,7 @@ class Level():
             "entitys": import_csv_layout(os.path.join(Settings.map_path,"map_Entitys.csv")),          
             }
         graphics = {
-            "animals": import_folder(Settings.animal_path),
+            #"animals": import_folder(Settings.animal_path),
             "objects": import_folder(Settings.object_path),
             #"entitys": import_folder(Settings.monster_path),
         }
@@ -67,8 +68,9 @@ class Level():
                             Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "object", surf)
                             
                         if style == "animals":
-                            random_animal = graphics["animals"][random.choice(list(graphics["animals"]))]
-                            Tile((x,y),[self.visible_sprites, self.obstacle_sprites], "animal", random_animal)
+                            animal_type = ["hen", "pig"]
+                            random_animal = random.choice(animal_type)
+                            Animal(random_animal, (x,y),[self.visible_sprites],self.obstacle_sprites)
                         
                         if style == "entitys":
                             if col == "0":
