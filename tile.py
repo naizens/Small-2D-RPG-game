@@ -6,7 +6,7 @@ class Tile(pygame.sprite.Sprite):
         super().__init__(groups)
         self.sprite_type = sprite_type
         self.image = surface
-        #self.image = pygame.image.load(os.path.join(Settings.test_path,"fence.png")).convert_alpha()
+        
         self.x, self.y = self.image.get_size()
         
         self.image = pygame.transform.scale(self.image, (self.x*Settings.scaling, self.y*Settings.scaling))

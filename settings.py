@@ -56,7 +56,7 @@ class Settings():
     item_box_size = 80
     ui_font = os.path.join(font_path, "CompassPro.ttf")
     ui_font_size = 25
-    ui_border_radius = 8
+    ui_border_radius = 10
     
     # General colors
     water_color = "#4fa4b8"
