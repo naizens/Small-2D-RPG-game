@@ -1,16 +1,13 @@
 # Small-2D-RPG-game
 
+##Installation
+pip install -r requirements.txt
+
 ## Controls
 
-w-a-s-d = movement
-
-right_ctrl = magic spells
-
-space = attack
-
-q = change weapon
-
-e = change magic spell
-
-esc = pause screen if ingame
-
+W-A-S-D = movement
+RIGHT_CTRL = magic spells
+SPACE = attack
+Q = change weapon
+E = change magic spell
+ESC = pause screen if ingame
