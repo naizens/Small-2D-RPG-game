@@ -14,28 +14,21 @@ from ui import Ui
 
 class Level():
     def __init__(self, game):
-        
         # Get the display surface
         self.display_surface = pygame.display.get_surface()
-
         # Create sprite groups
         self.visible_sprites = YSortCameraGroup()  # Group of sprites that are visible
         self.obstacle_sprites = pygame.sprite.Group() # Group of the sprites that the Player can collide with
 
-        
         self.game = game
-        
         # Sprites for the attack
         self.current_attack = None
         self.attack_sprites = pygame.sprite.Group()
         self.attackable_sprites = pygame.sprite.Group()
-        
         # Setup for the Sprites
         self.create_map()
-        
         # Ui
         self.ui = Ui()
-        
         #particles
         self.animation_player = AnimationPlayer()
         self.magic_player = MagicPlayer(self.animation_player)
@@ -50,7 +43,6 @@ class Level():
         graphics = {
             "objects": import_folder(Settings.object_path),
         }
-        
         
         for style,layout in layouts.items():
             for row_index, row in enumerate(layout):
@@ -120,7 +112,6 @@ class Level():
             self.animation_player.create_particles(attack_type, self.player.rect.center, [self.visible_sprites])
     
     def trigger_death_particles(self, pos, particle_type):
-        
         self.animation_player.create_particles(particle_type, pos, [self.visible_sprites])
         
     def add_exp(self, amount):
@@ -135,11 +126,9 @@ class Level():
         self.visible_sprites.custom_draw(self.player)
         self.ui.draw(self.player)
 
-
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self) -> None:
         super().__init__()
-
         self.display_surface = pygame.display.get_surface()
         self.half_width = self.display_surface.get_size()[0] // 2
         self.half_heigth = self.display_surface.get_size()[1] // 2
@@ -151,7 +140,6 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.floor_rect = self.floor_surface.get_rect(topleft = (0,0))
         
     def custom_draw(self, player):
-
         #get the offset
         self.offset.x = player.rect.x - self.half_width + player.rect.width // 2
         self.offset.y = player.rect.y - self.half_heigth + player.rect.height // 2
@@ -160,7 +148,6 @@ class YSortCameraGroup(pygame.sprite.Group):
         floor_offset_pos = self.floor_rect.topleft - self.offset
         self.display_surface.blit(self.floor_surface, floor_offset_pos)
         
-
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_pos)

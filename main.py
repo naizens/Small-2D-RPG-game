@@ -10,8 +10,7 @@ class Game(object):
     def __init__(self) -> None:
         super().__init__()
         os.environ["SDL_VIDEO_WINDOW_CENTERED"] = "10,50"
-
-
+        
         pygame.init()
         pygame.font.init()
         pygame.display.set_caption(Settings.title)

@@ -4,7 +4,6 @@ from weapons import Weapon
 
 class Ui:
     def __init__(self) -> None:
-        
         #general
         self.display_surface = pygame.display.get_surface()
         self.font = pygame.font.Font(Settings.ui_font, Settings.ui_font_size)

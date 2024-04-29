@@ -6,7 +6,6 @@ from entity import Entity
 class Player(Entity):
     def __init__(self, pos, groups, obstacle_sprites, game, create_attack, destroy_attack, create_magic):
         super().__init__(groups)
-        
         self.game = game
         
         self.image = pygame.image.load(os.path.join(Settings.idle_player_path,"idle_down.png")).convert_alpha()
@@ -56,7 +55,6 @@ class Player(Entity):
         self.weapon_attack_sound = pygame.mixer.Sound(os.path.join(Settings.sound_path, "sword.wav"))
         self.weapon_attack_sound.set_volume(Settings.volume)
                
-
     def import_player_assets(self):
         character_path = Settings.character_path
         self.animations = {"up": [], "down": [], "left": [], "right": [], "right_idle": [],

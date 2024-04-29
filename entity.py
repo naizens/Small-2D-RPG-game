@@ -8,7 +8,6 @@ class Entity(pygame.sprite.Sprite):
         self.animation_speed = 0.15
         self.direction = pygame.math.Vector2()
     
-    
     def collision(self, direction):
         if direction == "horizontal":
             for sprite in self.obstacle_sprites:

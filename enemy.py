@@ -3,7 +3,6 @@ from settings import Settings
 from entity import Entity
 from support import import_folder
 
-
 class Enemy(Entity):
     def __init__(self, monster_name , pos ,groups, obstacle_sprites, damage_player, trigger_death_particles, app_exp, game) -> None:
         super().__init__(groups)
@@ -32,7 +31,6 @@ class Enemy(Entity):
         self.notice_radius = monster_info["notice_radius"]
         self.attack_type = monster_info["attack_type"]
     
-        
         # Interaction with the player
         self.can_attack = True
         self.attack_time = None
@@ -162,16 +160,14 @@ class Enemy(Entity):
             self.trigger_death_particles(self.rect.center, self.monster_name)
             self.death_sound.play()
             self.add_exp(self.exp)
-        
-           
+            
     def update(self):
         self.hit_reaction()
         self.move(self.speed)
         self.animate()
         self.cooldowns()
         self.check_death()
-        
-        
+          
     def enemy_update(self, player):
         self.get_status(player)
         self.actions(player)  

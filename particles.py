@@ -4,17 +4,14 @@ from settings import Settings
 
 class AnimationPlayer():
     def __init__(self) -> None:
-        
         particle_path = os.path.join(Settings.image_path, "particles")
         flame_path = os.path.join(particle_path, "flame")
         aura_path = os.path.join(particle_path, "aura")
         heal_path = os.path.join(particle_path, "heal")
         smoke_path = os.path.join(particle_path, "smoke")
-        
         flames = os.path.join(flame_path, "frames")
         
         self.frames = {
-            
 			# magic
 			"flame": import_folder(flames),
 			"aura": import_folder(aura_path),
@@ -32,7 +29,6 @@ class AnimationPlayer():
 			
         }
 
-        
     def create_particles(self, animation_type, pos, groups):
         animation_frames = self.frames[animation_type]
         ParticleEffect(pos, animation_frames, groups)
@@ -48,8 +44,6 @@ class ParticleEffect(pygame.sprite.Sprite):
         self.frames = animation_frames
         self.image = self.frames[str(self.frame_index)]
         self.rect = self.image.get_rect(center = pos)
-        
-
         
     def animate(self):
         self.frame_index += self.animation_speed

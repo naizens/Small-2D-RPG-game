@@ -25,7 +25,6 @@ class Animal(Entity):
         self.health = animal_info["health"]
         self.notice_radius = animal_info["notice_radius"]
         
-        
     def import_graphics(self, name):
         self.animations = {"idle": []}
         main_path = os.path.join(Settings.animal_path, name)
@@ -34,7 +33,6 @@ class Animal(Entity):
             full_path = os.path.join(main_path, animation)
             self.animations[animation] = list(import_folder(full_path).values())
             
-    
     def animate(self):
         animation = self.animations[self.status]
         

@@ -6,9 +6,7 @@ pygame.font.init()
 
 class StartScreen():
     def __init__(self):
-        
         self.font = pygame.font.Font(Settings.ui_font, 60)
-        
         
         self.image = pygame.image.load(os.path.join(Settings.image_path,"start_bg.jpg")).convert_alpha()
         self.image = pygame.transform.scale(self.image,(Settings.width, Settings.heigth))
@@ -22,8 +20,7 @@ class StartScreen():
         self.exit_button_rect.topleft = (Settings.width//2 - self.exit_button_rect.width//2, Settings.heigth//2 + self.exit_button_rect.height // 2 + 20)
         
         self.info_text = self.font.render(("Welcome to the game!"), 1 , "red")
-    
-        
+      
     def start_is_hovered(self):
         return self.start_button_rect.collidepoint(pygame.mouse.get_pos())    
     
@@ -38,12 +35,10 @@ class StartScreen():
         
 class PauseScreen():
     def __init__(self):
-        
         self.font = pygame.font.Font(Settings.ui_font, 60)
         
         self.info_text = self.font.render(("Game is Paused."), 1 , "red")
-        
-        
+         
         self.overlay = pygame.Surface((Settings.width, Settings.heigth))
         self.overlay.set_alpha(30)
         pygame.Surface.fill(self.overlay, (136, 136, 136))
@@ -59,9 +54,7 @@ class PauseScreen():
         self.exit_button = pygame.image.load(os.path.join(button_path,"exit_button.png")).convert_alpha()
         self.exit_button_rect = self.exit_button.get_rect()
         self.exit_button_rect.topleft = (Settings.width // 2 - self.exit_button_rect.width // 2, Settings.heigth // 2 + self.exit_button_rect.height // 2 + 10)
-    
-    
-        
+       
     def resume_is_hovered(self):
         return self.back_button_rect.collidepoint(pygame.mouse.get_pos())    
     
@@ -70,8 +63,7 @@ class PauseScreen():
      
     def check_leave(self):
         pass 
-    
-        
+       
     def draw(self, screen):
         screen.blit(self.overlay, self.overlay.get_rect())
         screen.blit(self.info_text, (Settings.width // 2 - self.info_text.get_rect().width // 2, Settings.heigth // 2 - self.info_text.get_rect().height // 2 - self.back_button_rect.height - 100))
@@ -81,7 +73,6 @@ class PauseScreen():
         
 class GameOverScreen():
     def __init__(self):
-        
         self.font = pygame.font.Font(Settings.ui_font, 60)
         
         self.info_text = self.font.render(("You died. Game Over!"), 1 , "red")
@@ -101,9 +92,7 @@ class GameOverScreen():
         self.exit_button = pygame.image.load(os.path.join(button_path,"exit_button.png")).convert_alpha()
         self.exit_button_rect = self.exit_button.get_rect()
         self.exit_button_rect.topleft = (Settings.width // 2 - self.exit_button_rect.width // 2, Settings.heigth // 2 + self.exit_button_rect.height // 2 + 10)
-    
-    
-        
+     
     def restart_is_hovered(self):
         return self.restart_button_rect.collidepoint(pygame.mouse.get_pos())    
     
@@ -122,7 +111,6 @@ class GameOverScreen():
         
 class WonScreen():
     def __init__(self):
-        
         self.font = pygame.font.Font(Settings.ui_font, 60)
         
         self.info_text = self.font.render(("You Won!"), 1 , "red")
@@ -142,9 +130,7 @@ class WonScreen():
         self.exit_button = pygame.image.load(os.path.join(button_path,"exit_button.png")).convert_alpha()
         self.exit_button_rect = self.exit_button.get_rect()
         self.exit_button_rect.topleft = (Settings.width // 2 - self.exit_button_rect.width // 2, Settings.heigth // 2 + self.exit_button_rect.height // 2 + 10)
-    
-    
-        
+       
     def restart_is_hovered(self):
         return self.restart_button_rect.collidepoint(pygame.mouse.get_pos())    
     

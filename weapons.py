@@ -7,11 +7,9 @@ class Weapon(pygame.sprite.Sprite):
         super().__init__(groups)
         self.sprite_type = "weapon"
         directon = player.status.split("_", 1)[0]
-        
         #graphics
         full_path = os.path.join(Settings.weapon_path, player.weapon, f"{directon}.png")
         self.image = pygame.image.load(full_path).convert_alpha()
-        
         #placement
         if directon == "right":
             self.rect = self.image.get_rect(midleft = player.rect.midright + pygame.math.Vector2(-4, 16))

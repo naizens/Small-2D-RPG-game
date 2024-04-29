@@ -37,7 +37,7 @@ class Settings():
     rapier_path = os.path.join(weapon_path, "rapier")
     sai_path = os.path.join(weapon_path, "sai")
     
-    ## Pathes for the magic spells
+    ## Paths for the magic spells
     
     fire_path = os.path.join(particle_path, "flame")
     heal_path = os.path.join(particle_path, "heal")
